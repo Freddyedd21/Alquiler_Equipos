@@ -1,0 +1,39 @@
+name: Deploy SonarQube to Azure VM
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Instalar SSH client
+        run: sudo apt-get install -y sshpass
+
+      - name: Copiar docker-compose.yml a la VM
+        run: |
+          sshpass -p 'Sonar123!' scp -o StrictHostKeyChecking=no docker-compose.yml azureuser@172.174.96.84:/home/azureuser/docker-compose.yml
+
+      - name: Instalar Docker y Docker Compose en la VM
+        run: |
+          sshpass -p 'Sonar123!' ssh -o StrictHostKeyChecking=no azureuser@172.174.96.84 "
+            sudo apt update &&
+            sudo apt install -y docker.io docker-compose
+          "
+
+      - name: Levantar SonarQube con Docker Compose
+        run: |
+          sshpass -p 'Sonar123!' ssh -o StrictHostKeyChecking=no azureuser@172.174.96.84 "
+            cd /home/azureuser &&
+            sudo docker-compose up -d
+          "
+
+      - name: Mostrar estructura de archivos con tree
+        run: |
+          sshpass -p 'Sonar123!' ssh -o StrictHostKeyChecking=no azureuser@172.174.96.84 "
+            sudo apt install -y tree &&
+            tree /home/azureuser
+          "

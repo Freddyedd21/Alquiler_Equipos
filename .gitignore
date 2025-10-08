@@ -3,3 +3,11 @@ coverage/**
 .env
 dist
 
+# Ignorar archivos y carpetas de Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+# Otros archivos grandes
+*.exe
+

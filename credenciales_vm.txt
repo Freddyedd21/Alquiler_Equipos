@@ -1,0 +1,4 @@
+Usuario VM: azureuser
+Contraseña VM: Tarea: implementar sonar qube con un pipeline (sonar qube debe estar en una maquina virtual), puede ser con pipelines o ansible, y se debe hacer con tree
+
+Recuerda que estos datos son para acceder por SSH o consola a la máquina virtual creada con Terraform en Azure.
