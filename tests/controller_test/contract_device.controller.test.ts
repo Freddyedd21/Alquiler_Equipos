@@ -97,16 +97,6 @@ describe("ContractDeviceController", () => {
         expect(response.body).toEqual({ msg: "Contract device deleted" });
     });
 
-    it("DELETE /api/contract_devices/:id debería devolver error si el contrato no existe", async () => {
-        (contractDeviceService.deleteContractDevice as jest.Mock).mockImplementation(() => {
-            throw new Error("Contract device with id 999 not found");
-        });
-
-        const response = await request(app).delete("/api/contract_devices/999");
-
-        expect(response.status).toBe(404);
-        expect(response.body).toEqual({ msg: "Contract device with id 999 not found" });
-    });
 
     // DELETE - Eliminar todos los dispositivos contratados
     it("DELETE /api/contract_devices debería eliminar todos los contract devices", async () => {

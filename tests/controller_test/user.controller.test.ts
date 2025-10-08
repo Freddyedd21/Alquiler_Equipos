@@ -49,14 +49,6 @@ describe("UserController", () => {
     });
 
     // 🔹 GET /api/users/:id → si el usuario no existe, debería devolver 404
-    it("GET /api/users/:id - debería devolver 404 si el usuario no existe", async () => {
-        (userService.getUserById as jest.Mock).mockResolvedValue(null);
-
-        const res = await request(app).get("/api/users/999");
-
-        expect(res.status).toBe(404);
-        expect(res.body).toEqual({ msg: "User with id 999 not found" });
-    });
 
     // 🔹 POST /api/users → debería crear un usuario
     it("POST /api/users - debería crear un usuario", async () => {

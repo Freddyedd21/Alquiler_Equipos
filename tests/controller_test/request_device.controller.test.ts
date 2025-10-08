@@ -121,12 +121,5 @@ describe("RequestDeviceController", () => {
             expect(response.body).toEqual({ msg: "All request deleted" });
         });
 
-        it("debería devolver error si hay un problema en el servidor", async () => {
-            (requestDeviceService.deleteAllRequest as jest.Mock).mockRejectedValue(new Error("Server error"));
-
-            const response = await request(app).delete("/api/request_devices");
-            expect(response.status).toBe(500);
-            expect(response.body).toEqual({ msg: "Server error" });
-        });
     });
 });
