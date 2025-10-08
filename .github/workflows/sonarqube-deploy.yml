@@ -46,6 +46,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
           npm install --save-dev sonar-scanner
+          npx jest --coverage
           npx sonar-scanner \
             -Dsonar.projectKey=Alquiler_Equipos \
             -Dsonar.sources=src \
