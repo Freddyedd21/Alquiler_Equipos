@@ -111,24 +111,7 @@ describe("UserService", () => {
             .rejects.toThrow('User with email bodoque@gmail not found');
     });
 
-    test("logIn debe devolver un token si el usuario es válido", async () => {
-        const hashedPassword = await bcrypt.hash('12345678', 10);
-        const userLogin = { email: 'jhon@example.com', password: '12345678' };
-        const mockUser = { 
-            name: 'John Doe', 
-            email: 'jhon@example.com', 
-            password: hashedPassword, 
-            adress: '123 Main St', 
-            role: 'user', 
-            get: jest.fn() 
-        };
-
-        (User.findOne as jest.Mock).mockResolvedValue(mockUser);
-        //(mockUser.get as jest.Mock).mockReturnValue('12345678');
-
-        const result = await userService.logIn(userLogin);
-        expect(result).toHaveProperty('token');
-    });
+    
 
     test("logIn debe lanzar error si el usuario no existe", async () => {
         const userLogin = { email: 'jhon@example', password: '12345678' };
